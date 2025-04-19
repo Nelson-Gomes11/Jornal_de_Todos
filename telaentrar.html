@@ -5,50 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Substitua com o caminho real do seu CSS -->
+
     <link rel="stylesheet" href="estilo.css">
-    
-    <title>Tinder Evangélico ✝️</title>
+
+    <title>Blog do Mundo &#127757;</title>
 </head>
 
 <body>
     <main class="container" role="main">
-        <div class="form-img">
-            <img src="foto" alt="Imagem ilustrativa de um casal evangélico feliz">
-        </div>
+      
 
         <section class="form" aria-labelledby="titulo-login">
-            <form action="#" aria-label="Formulário de login">
-                <div class="form-header">
+            <form action="#" aria-label="Formulário de login no Tinder Evangélico" novalidate>
+                <header class="form-header">
                     <div class="title">
                         <h1 id="titulo-login">Entrar na conta</h1>
                     </div>
                     <div class="login-button">
-                        <button type="button" onclick="history.back()" aria-label="Voltar à página anterior">
+                        <button type="button" onclick="history.back()" aria-label="Voltar para a página anterior">
                             Voltar
                         </button>
                     </div>
-                </div>
+                </header>
 
                 <div class="input-group">
                     <div class="input-box">
                         <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required aria-required="true">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Digite seu e-mail" 
+                            required 
+                            aria-required="true" 
+                            aria-describedby="email-desc">
+                        <small id="email-desc">Informe um e-mail válido, como exemplo@email.com</small>
                     </div>
 
                     <div class="input-box">
                         <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="password" placeholder="Digite sua senha" required aria-required="true">
+                        <input 
+                            type="password" 
+                            id="senha" 
+                            name="password" 
+                            placeholder="Digite sua senha" 
+                            required 
+                            aria-required="true" 
+                            aria-describedby="senha-desc">
+                        <small id="senha-desc">A senha deve ter pelo menos 6 caracteres</small>
                     </div>
                 </div>
 
                 <div class="continue-button">
-                    <button type="submit" aria-label="Fazer login">Continuar</button>
+                    <button type="submit" aria-label="Fazer login com os dados preenchidos">Continuar</button>
                 </div>
-                
+
                 <div>
-                    <a href="recuperar-senha.html" aria-label="Página para recuperar a senha">Esqueci minha senha</a>
+                    <a href="recuperar-senha.html" aria-label="Clique para recuperar a senha esquecida">Esqueci minha senha</a>
                 </div>
             </form>
         </section>
