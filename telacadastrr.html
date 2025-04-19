@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Tinder Evangélico ✝️</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<body>
+    <main class="container">
+        <section aria-labelledby="titulo-cadastro">
+            <h1 id="titulo-cadastro">Criar uma conta no Tinder Evangélico</h1>
+            
+            <form action="*" method="post" aria-label="Formulário de cadastro">
+                <div>
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" id="nome" name="nome" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="confirmar-senha">Confirmar senha:</label>
+                    <input type="password" id="confirmar-senha" name="confirmar_senha" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="idade">Idade:</label>
+                    <input type="number" id="idade" name="idade" min="18" max="120" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="genero">Gênero:</label>
+                    <select id="genero" name="genero" required aria-required="true">
+                        <option value="">Selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="sobre">Fale um pouco sobre você:</label>
+                    <textarea id="sobre" name="sobre" rows="4" aria-describedby="descricao-sobre"></textarea>
+                    <p id="descricao-sobre">Escreva algo que ajude outras pessoas a te conhecerem.</p>
+                </div>
+
+                <div>
+                    <button type="submit" aria-label="Cadastrar nova conta">Cadastrar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

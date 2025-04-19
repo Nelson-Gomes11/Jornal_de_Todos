@@ -5,48 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=espaço para css>
-    <title>Tinder Evangélico✝️</title>
+    
+    <!-- Substitua com o caminho real do seu CSS -->
+    <link rel="stylesheet" href="estilo.css">
+    
+    <title>Tinder Evangélico ✝️</title>
 </head>
 
 <body>
-    <div class="container">
+    <main class="container" role="main">
         <div class="form-img">
-            <img src="foto" alt="aqui vai ser foto">
+            <img src="foto" alt="Imagem ilustrativa de um casal evangélico feliz">
         </div>
-       <div class="form">
-         <form action="#">
-            <div class="form-header">
-                <div class="title">
-                    <h1>Entrar</h1>
-                </div>
-                <div class="login-button">
-                    <button>Voltar</button>
-                </div>
-            </div>
 
-            <div class="input-group">
-                <div class="input-box">
-                    <label>E-mail</label>
-                    <input type="email" name="email" placeholder="Digite seu e-mail" required>
+        <section class="form" aria-labelledby="titulo-login">
+            <form action="#" aria-label="Formulário de login">
+                <div class="form-header">
+                    <div class="title">
+                        <h1 id="titulo-login">Entrar na conta</h1>
+                    </div>
+                    <div class="login-button">
+                        <button type="button" onclick="history.back()" aria-label="Voltar à página anterior">
+                            Voltar
+                        </button>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <label>Senha</label>
-                    <input type="password" name="password" placeholder="Digite sua senha" required>
-                </div>
-                <br>
-                <br>
-            <div class="continue-button">
-                <button>Continuar</button>
-            </div>
-            
-            <div>
-                <a>Esqueci minha senha</a>
-            </div>
 
-        </form>
-    </div>
-</div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required aria-required="true">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="password" placeholder="Digite sua senha" required aria-required="true">
+                    </div>
+                </div>
+
+                <div class="continue-button">
+                    <button type="submit" aria-label="Fazer login">Continuar</button>
+                </div>
+                
+                <div>
+                    <a href="recuperar-senha.html" aria-label="Página para recuperar a senha">Esqueci minha senha</a>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 
 </html>
