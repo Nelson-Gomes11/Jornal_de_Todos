@@ -1,0 +1,189 @@
+/* Reset e Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Cabeçalho Aprimorado */
+  header {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  header span {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  header .icon {
+    font-size: 1.6rem;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .auth-button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .login-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .signup-btn {
+    background-color: white;
+    color: #3498db;
+    border: 2px solid white;
+  }
+  
+  .signup-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #2980b9;
+  }
+  
+  /* Restante do CSS permanece igual */
+  /* Título Principal */
+  h1 {
+    text-align: center;
+    margin: 2rem 0;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    position: relative;
+  }
+  
+  h1::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: #3498db;
+    margin: 10px auto;
+    border-radius: 2px;
+  }
+  
+  /* Container de Cards */
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+  
+  /* Cards */
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card.blue {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+  }
+  
+  /* Rodapé */
+  footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 15px;
+    }
+    
+    .header-content {
+      margin-bottom: 10px;
+    }
+    
+    header span {
+      font-size: 1.5rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .container {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+    
+    .auth-buttons {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      padding: 0.8rem;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+      margin: 1.5rem 0;
+    }
+    
+    .card {
+      padding: 1.5rem;
+    }
+    
+    .auth-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
