@@ -1,6 +1,3 @@
-// script.js
-
-// Seleciona os botões
 const botaoEntrar = document.querySelector('.botao');
 const botaoCadastrar = document.querySelector('.botao0');
 
