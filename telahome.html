@@ -4,32 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jornal de Todos</title>
-<link rel="stylesheet" href="assets/css/telaHome.css">
-   
+  <link rel="stylesheet" href="assets/css/telaHome.css">
 </head>
 <body>
 
-  <header>
+  <header role="banner" aria-label="Cabeçalho do site">
     <div class="header-content">
-      <span>Jornal De Todos</span> <span class="icon">📰</span>
+      <span aria-label="Nome do jornal">Jornal De Todos</span>
+      <span class="icon" role="img" aria-label="Ícone de jornal">📰</span>
     </div>
-    <div class="auth-buttons">
-      <a href="assets/html/signin.html" class="auth-button login-btn">Login</a>
-      <a href="assets/html/signup.html" class="auth-button signup-btn">Cadastre-se</a>
-    </div>
+    <nav class="auth-buttons" role="navigation" aria-label="Área de autenticação">
+      <a href="assets/html/signin.html" class="auth-button login-btn" aria-label="Ir para página de login">Login</a>
+      <a href="assets/html/signup.html" class="auth-button signup-btn" aria-label="Ir para página de cadastro">Cadastre-se</a>
+    </nav>
   </header>
 
+  <main role="main" aria-labelledby="titulo-principal">
+    <h1 id="titulo-principal">LOREM IPSUM</h1>
 
-  <h1>LOREM IPSUM</h1>
+    <section class="container" aria-label="Conteúdo principal">
+      <!-- Conteúdo dinâmico ou notícias vão aqui -->
+    </section>
+  </main>
 
-  <div class="container">
-   
-  </div>
-
-  <footer>
-    AGRADECIMENTOS - LUCAS E SANDIENGO
+  <footer role="contentinfo" aria-label="Rodapé">
+    <p>AGRADECIMENTOS - LUCAS E SANDIENGO</p>
   </footer>
 
   <script src="assets/js/blogAPI.js"></script>
+
+  <!-- Script do leitor de tela embutido -->
+  <script>
+    // Texto que será lido
+    const textoParaLer = `
+      Bem-vindo ao Jornal de Todos.
+      Você pode fazer login ou se cadastrar.
+      O título da página é LOREM IPSUM.
+    `;
+
+    // Função que fala o texto usando a API de síntese de voz
+    function lerPagina(texto) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.log('Síntese de voz não é suportada neste navegador.');
+      }
+    }
+
+    // Lê automaticamente quando a página carrega
+    window.onload = function() {
+      lerPagina(textoParaLer);
+    };
+  </script>
 </body>
 </html>
+
