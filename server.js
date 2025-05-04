@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+// Servir arquivos estáticos da pasta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 let posts = [
     {
@@ -22,6 +25,7 @@ let posts = [
     {
         id: 3,
         title: "Terceiro Post",
+        img: "/public/Deficiencia_Visual.png", // Nome do arquivo apenas (deve estar na pasta public)
         content: "When an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         date: "2023-05-03"
     }
@@ -38,12 +42,13 @@ app.post('/posts', (req, res) => {
         id: posts.length + 1,
         title: req.body.title,
         content: req.body.content,
-        date: new Date().toISOString().split('T')[0]
+        date: new Date().toISOString().split('T')[0],
+        img: req.body.img || null // Adiciona a imagem se existir no body
     };
     posts.push(newPost);
     res.status(201).json(newPost);
 });
 
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando em http://localhost:${port}/posts`);
 });

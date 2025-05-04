@@ -19,18 +19,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função para exibir os posts no HTML
     function displayPosts(posts) {
-        // Limpa o container
         container.innerHTML = '';
         
-        // Cria cards para cada post
         posts.forEach((post, index) => {
             const card = document.createElement('div');
             card.className = `card ${index === 0 ? 'blue' : ''}`;
+
+            // Texto que será lido
+            const textoParaLer = `${post.title || 'Sem título'}. ${post.content || 'Conteúdo não disponível'}. Postado em: ${new Date(post.date || Date.now()).toLocaleDateString()}`;
+
+            // Adiciona atributo data-ler para leitura
+            card.setAttribute('data-ler', textoParaLer);
+
             card.innerHTML = `
                 <h2>${post.title || 'Sem título'}</h2>
                 <p>${post.content || 'Conteúdo não disponível'}</p>
                 <small>Postado em: ${new Date(post.date || Date.now()).toLocaleDateString()}</small>
             `;
+
+            // Adiciona evento de leitura
+            card.addEventListener('mouseover', () => {
+                const texto = card.getAttribute('data-ler');
+                lerPagina(texto); // Certifique-se que a função lerPagina esteja disponível no escopo
+            });
+
             container.appendChild(card);
         });
     }
