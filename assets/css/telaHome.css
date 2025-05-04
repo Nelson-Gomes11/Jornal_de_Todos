@@ -650,3 +650,81 @@ footer {
   font-size: 0.8rem;
   color: #7f8c8d;
 }
+
+
+
+/* Estilo base para o dropdown */
+.main-nav ul li.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1c1c1c; /* fundo escuro */
+  color: #fff; /* texto branco */
+  padding: 10px 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  min-width: 180px;
+}
+
+.dropdown-menu a {
+  color: #fff; /* garante texto visível */
+}
+
+.dropdown-menu li {
+  padding: 8px 20px;
+  white-space: nowrap;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-menu a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+/* Para ícone de seta */
+.dropdown > a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Mobile: garantir que fique por cima */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espaço entre os itens */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav ul li a {
+  display: inline-block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Garante que o dropdown fique alinhado com os outros itens */
+.main-nav ul li.dropdown > a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}

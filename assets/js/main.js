@@ -29,16 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
         image: "https://source.unsplash.com/random/600x400/?news,2"
       },
       {
-        title: "Terceiro Post",
+        title: "Terceiro Posteeeeeeee",
         excerpt: "When an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         date: "02/05/2023",
         category: "Tecnologia",
-        image: "https://source.unsplash.com/random/600x400/?news,3"
+        image: "/assets/images/Deficiencia_Visual.png"
       },
       {
         title: "Novo Projeto Social",
         excerpt: "Iniciativa promove inclusão digital em comunidades carentes da região.",
         date: "03/05/2023",
+        img: "/public/Deficiencia_Visual.png",
         category: "Social",
         image: "https://source.unsplash.com/random/600x400/?community"
       }
@@ -65,3 +66,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     renderNews();
   });
+
+const categoriasBtn = document.getElementById('categoriasBtn');
+const categoriasMenu = document.getElementById('categoriasMenu');
+
+categoriasBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const isVisible = categoriasMenu.style.display === 'block';
+  categoriasMenu.style.display = isVisible ? 'none' : 'block';
+  categoriasBtn.setAttribute('aria-expanded', !isVisible);
+});
+
+// Fechar ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!categoriasBtn.contains(e.target) && !categoriasMenu.contains(e.target)) {
+    categoriasMenu.style.display = 'none';
+    categoriasBtn.setAttribute('aria-expanded', false);
+  }
+});

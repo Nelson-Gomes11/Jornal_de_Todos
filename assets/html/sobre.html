@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Jornal De Todos</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --dark-bg: #2c3e50;
+            --light-text: #f9f9f9;
+            --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-alt: 'Georgia', serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-nav, .user-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        
+        .current-page {
+            background-color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .about-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-family: var(--font-alt);
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            margin: 1.2rem 0 0.8rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .mission-statement {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .team-member {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--secondary-color);
+        }
+        
+        .contact-info {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Accessibility Features */
+        .accessibility-bar {
+            background-color: var(--dark-bg);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        
+        .accessibility-btn {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.6rem;
+        }
+        
+        .accessibility-btn:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-nav, .user-nav {
+                justify-content: center;
+            }
+            
+            .about-container {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* High Contrast Mode */
+        .high-contrast {
+            --primary-color: #000;
+            --secondary-color: #000;
+            --accent-color: #000;
+            --text-color: #000;
+            --light-bg: #fff;
+            --dark-bg: #000;
+            --light-text: #fff;
+            background-color: #fff !important;
+            color: #000 !important;
+        }
+        
+        .high-contrast a {
+            color: #000 !important;
+            text-decoration: underline !important;
+        }
+        
+        .high-contrast .about-container,
+        .high-contrast .team-member,
+        .high-contrast .contact-info {
+            border: 2px solid #000 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Accessibility Bar -->
+    <div class="accessibility-bar">
+        <button class="accessibility-btn" id="increaseFont">A+</button>
+        <button class="accessibility-btn" id="decreaseFont">A-</button>
+        <button class="accessibility-btn" id="highContrast">Alto Contraste</button>
+        <button class="accessibility-btn" id="resetAccessibility">Resetar</button>
+    </div>
+    
+    <header>
+        <div class="logo">Jornal De Todos</div>
+        <div class="tagline">Informação acessível para todas as pessoas</div>
+    </header>
+    
+    <nav>
+        <div class="main-nav">
+            <a href="index.html">Últimas</a>
+            <a href="destaques.html">Destaques</a>
+            <a href="categorias.html">Categorias</a>
+            <a href="sobre.html" class="current-page">Sobre</a>
+        </div>
+        <div class="user-nav">
+            <a href="login.html">Login</a>
+            <a href="cadastro.html">Cadastre-se</a>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="about-container">
+            <h1>Sobre Nós</h1>
+            
+            <p>O <strong>Jornal De Todos</strong> é uma plataforma de notícias comprometida com a inclusão, acessibilidade e diversidade. Nosso objetivo é tornar a informação disponível para todas as pessoas, independentemente de suas habilidades ou condições.</p>
+            
+            <div class="mission-statement">
+                "Promovemos o acesso à informação como um direito fundamental, criando conteúdo que respeita e valoriza a diversidade humana em todas as suas formas."
+            </div>
+            
+            <h2>Nossa História</h2>
+            <p>Fundado em 2023 por um grupo de jornalistas e desenvolvedores com diferentes habilidades e experiências de vida, o Jornal De Todos nasceu da necessidade de criar um veículo de comunicação verdadeiramente inclusivo.</p>
+            <p>Desde o início, nos comprometemos a eliminar barreiras na comunicação, implementando soluções inovadoras para tornar nosso conteúdo acessível para pessoas com diferentes tipos de deficiência.</p>
+            
+            <h2>Nossa Equipe</h2>
+            <p>Nossa equipe é composta por profissionais diversos, incluindo pessoas com diferentes habilidades, origens e perspectivas:</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Foto de Ana Silva, jornalista com deficiência visual">
+                    <h3>Ana Silva</h3>
+                    <p>Editora-chefe</p>
+                    <p>Jornalista com deficiência visual, especialista em acessibilidade digital</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Foto de Carlos Mendes, repórter com deficiência auditiva">
+                    <h3>Carlos Mendes</h3>
+                    <p>Repórter sênior</p>
+                    <p>Especialista em reportagens com tradução em LIBRAS</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Foto de Mariana Oliveira, desenvolvedora web">
+                    <h3>Mariana Oliveira</h3>
+                    <p>Desenvolvedora Web</p>
+                    <p>Especialista em UX acessível e padrões WCAG</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Foto de João Santos, editor de conteúdo">
+                    <h3>João Santos</h3>
+                    <p>Editor de Conteúdo</p>
+                    <p>Especialista em linguagem clara e simplificação de textos</p>
+                </div>
+            </div>
+            
+            <h2>Nossos Valores</h2>
+            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                <li><strong>Inclusão:</strong> Criamos conteúdo para todas as pessoas</li>
+                <li><strong>Acessibilidade:</strong> Seguimos as diretrizes WCAG em todos nossos materiais</li>
+                <li><strong>Diversidade:</strong> Valorizamos diferentes perspectivas e experiências</li>
+                <li><strong>Transparência:</strong> Somos claros sobre nossos processos e fontes</li>
+            </ul>
+            
+            <h2>Contato</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:contato@jornaldetodos.com">contato@jornaldetodos.com</a></p>
+                <p><strong>Telefone:</strong> (XX) XXXX-XXXX (com suporte a texto)</p>
+                <p><strong>Endereço:</strong> Rua da Inclusão, 123 - Centro, Cidade/Estado</p>
+                <p><strong>Redes Sociais:</strong> Todas nossas redes possuem legendas e descrições alternativas</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="acessibilidade.html">Declaração de Acessibilidade</a>
+            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="termos.html">Termos de Uso</a>
+            <a href="trabalhe-conosco.html">Trabalhe Conosco</a>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Jornal De Todos. Todos os direitos reservados.
+        </div>
+    </footer>
+    
+    <script>
+        // Accessibility Features
+        document.getElementById('increaseFont').addEventListener('click', function() {
+            changeFontSize(1);
+        });
+        
+        document.getElementById('decreaseFont').addEventListener('click', function() {
+            changeFontSize(-1);
+        });
+        
+        document.getElementById('highContrast').addEventListener('click', function() {
+            document.body.classList.toggle('high-contrast');
+        });
+        
+        document.getElementById('resetAccessibility').addEventListener('click', function() {
+            document.body.classList.remove('high-contrast');
+            document.body.style.fontSize = '';
+        });
+        
+        function changeFontSize(direction) {
+            const currentSize = parseFloat(getComputedStyle(document.body).fontSize);
+            document.body.style.fontSize = (currentSize + direction * 2) + 'px';
+        }
+        
+        // Skip to content for screen readers
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '1' && e.altKey) {
+                document.querySelector('main').setAttribute('tabindex', '-1');
+                document.querySelector('main').focus();
+            }
+        });
+    </script>
+</body>
+</html>

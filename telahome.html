@@ -35,8 +35,18 @@
         <ul>
           <li><a href="#ultimas-noticias" data-ler="Últimas notícias">Últimas</a></li>
           <li><a href="#destaques" data-ler="Destaques">Destaques</a></li>
-          <li><a href="#categorias" data-ler="Categorias">Categorias</a></li>
-          <li><a href="#sobre" data-ler="Sobre nós">Sobre</a></li>
+          <li class="dropdown">
+              <a href="#" id="categoriasBtn" aria-haspopup="true" aria-expanded="false" data-ler="Categorias">
+                Categorias <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" id="categoriasMenu" aria-label="Submenu de Categorias">
+                <li><a href="#">Política</a></li>
+                <li><a href="#">Esportes</a></li>
+                <li><a href="#">Tecnologia</a></li>
+                <li><a href="#">Cultura</a></li>
+              </ul>
+          </li>
+          <li><a href="assets/html/sobre.html" data-ler="Sobre nós">Sobre</a></li>
         </ul>
       </nav>
       <nav class="auth-buttons" role="navigation" aria-label="Área de autenticação">
