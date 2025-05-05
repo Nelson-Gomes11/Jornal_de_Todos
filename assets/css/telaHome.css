@@ -728,3 +728,14 @@ footer {
   align-items: center;
   padding: 10px 15px;
 }
+
+/* Estilo para elementos interativos */
+[data-ler], .ler-ao-passar {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+[data-ler]:hover, .ler-ao-passar:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  outline: 2px dashed rgba(0, 0, 255, 0.3);
+}
