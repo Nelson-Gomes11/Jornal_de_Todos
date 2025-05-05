@@ -31,21 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
       excerpt: "Lorem ipsum has been the industry's standard dummy text ever since the 1500s.",
       date: "01/05/2023",
       category: "Cultura",
-      image: "https://source.unsplash.com/random/600x400/?news,2"
+      image: "/assets/images/cultura.jpg"
     },
     {
       title: "Terceiro Post",
       excerpt: "When an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       date: "02/05/2023",
       category: "Tecnologia",
-      image: ""
+      image: "/assets/images/tecnologia.jpg"
     },
     {
       title: "Novo Projeto Social",
       excerpt: "Iniciativa promove inclusão digital em comunidades carentes da região.",
       date: "03/05/2023",
       category: "Social",
-      image: "https://source.unsplash.com/random/600x400/?community"
+      image: "/assets/images/social.jpg"
     }
   ];
   
