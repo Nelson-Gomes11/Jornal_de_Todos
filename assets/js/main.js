@@ -20,28 +20,29 @@ document.addEventListener('DOMContentLoaded', function() {
       excerpt: "Promover acessibilidade é dar às pessoas com deficiência condições de uso dos espaços urbanos, dos serviços de transporte, dos meios de comunicação e informação, do sistema de educação, eliminando barreiras e garantindo a inclusão social daqueles que apresentam alguma condição de deficiência.",
       date: "30/04/2025",
       category: "Geral",
-      image: "/assets/images/Deficiencia_Visual.png"
+      image: "./assets/images/Deficiencia_Visual.png",
+
     },
     {
       title: "MPDFT promove debate sobre estratégias de inclusão nas escolas",
       excerpt: "Evento reuniu profissionais da área de educação com o objetivo de debater a implementação de práticas inclusivas nas escolas",
       date: "01/05/2025",
       category: "Cultura",
-      image: "/assets/images/cultura.jpg"
+      image: "./assets/images/cultura.jpg"
     },
     {
       title: "Tecnologia e Acessibilidade",
       excerpt: "Os programadores Lucas Gabriel e Nelson Gomes, desenvolvem um site para deficientes visuais.",
       date: "02/05/2025",
       category: "Tecnologia",
-      image: "/assets/images/tecnologia.jpg"
+      image: "./assets/images/tecnologia.jpg"
     },
     {
       title: "Novo Projeto Social",
       excerpt: "Iniciativa promove inclusão digital em comunidades carentes da região.",
       date: "03/05/2025",
       category: "Social",
-      image: "/assets/images/social.jpg"
+      image: "./assets/images/social.jpg"
     }
   ];
   
@@ -68,22 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   renderNews();
   
-  // Categorias menu
-  const categoriasBtn = document.getElementById('categoriasBtn');
-  const categoriasMenu = document.getElementById('categoriasMenu');
 
-  categoriasBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const isVisible = categoriasMenu.style.display === 'block';
-    categoriasMenu.style.display = isVisible ? 'none' : 'block';
-    categoriasBtn.setAttribute('aria-expanded', !isVisible);
-  });
 
-  // Fechar ao clicar fora
-  document.addEventListener('click', (e) => {
-    if (!categoriasBtn.contains(e.target) && !categoriasMenu.contains(e.target)) {
-      categoriasMenu.style.display = 'none';
-      categoriasBtn.setAttribute('aria-expanded', false);
-    }
-  });
+
+  
 });
