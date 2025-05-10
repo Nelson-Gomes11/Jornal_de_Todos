@@ -16,30 +16,30 @@ document.addEventListener('DOMContentLoaded', function() {
   // Simular carregamento de notícias
   const newsData = [
     {
-      title: "Primeiro Post",
-      excerpt: "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
-      date: "30/04/2023",
+      title: "O que é Acessibilidade?",
+      excerpt: "Promover acessibilidade é dar às pessoas com deficiência condições de uso dos espaços urbanos, dos serviços de transporte, dos meios de comunicação e informação, do sistema de educação, eliminando barreiras e garantindo a inclusão social daqueles que apresentam alguma condição de deficiência.",
+      date: "30/04/2025",
       category: "Geral",
       image: "/assets/images/Deficiencia_Visual.png"
     },
     {
-      title: "Segundo Post",
-      excerpt: "Lorem ipsum has been the industry's standard dummy text ever since the 1500s.",
-      date: "01/05/2023",
+      title: "MPDFT promove debate sobre estratégias de inclusão nas escolas",
+      excerpt: "Evento reuniu profissionais da área de educação com o objetivo de debater a implementação de práticas inclusivas nas escolas",
+      date: "01/05/2025",
       category: "Cultura",
       image: "/assets/images/cultura.jpg"
     },
     {
-      title: "Terceiro Post",
-      excerpt: "When an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      date: "02/05/2023",
+      title: "Tecnologia e Acessibilidade",
+      excerpt: "Os programadores Lucas Gabriel e Nelson Gomes, desenvolvem um site para deficientes visuais.",
+      date: "02/05/2025",
       category: "Tecnologia",
       image: "/assets/images/tecnologia.jpg"
     },
     {
       title: "Novo Projeto Social",
       excerpt: "Iniciativa promove inclusão digital em comunidades carentes da região.",
-      date: "03/05/2023",
+      date: "03/05/2025",
       category: "Social",
       image: "/assets/images/social.jpg"
     }
