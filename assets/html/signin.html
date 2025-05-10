@@ -9,29 +9,31 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="../css/signin.css" />
-    <title>Singin</title>
+    <title>Signin</title>
   </head>
   <body>
-    <div class="container">
-      <div class="card">
-        <h1>Entrar</h1>
+    <main class="container" role="main">
+      <section class="card" aria-labelledby="form-title">
+        <h1 id="form-title">Entrar</h1>
 
-        <div id="msgError"></div>
+        <div id="msgError" role="alert" aria-live="assertive"></div>
 
-        <div class="label-float">
-          <input type="text" id="usuario" paceholder="" required />
-          <label id="userLabel" for="usuario">Usuario</label>
-        </div>
+        <form onsubmit="event.preventDefault(); entrar();" aria-describedby="form-title">
+          <div class="label-float">
+            <label id="userLabel" for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario" placeholder=" " required aria-required="true" />
+          </div>
 
-        <div class="label-float">
-          <input type="password" id="senha" paceholder="" required />
-          <label id="senhaLabel" for="senha">Senha</label>
-          <i class="fa fa-eye" aria-hidden="true"></i>
-        </div>
+          <div class="label-float">
+            <label id="senhaLabel" for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder=" " required aria-required="true" />
+            <i id="verSenha" class="fa fa-eye" aria-hidden="true" title="Mostrar/ocultar senha" tabindex="0" role="button"></i>
+          </div>
 
-        <div class="justify-center">
-          <button onclick="entrar()">Entrar</button>
-        </div>
+          <div class="justify-center">
+            <button type="submit">Entrar</button>
+          </div>
+        </form>
 
         <div class="justify-center">
           <hr />
@@ -39,13 +41,13 @@
 
         <p>
           Não tem uma conta?
-          <a href="./signup.html">
-            Cadastre-se
-          </a>
+          <a href="./signup.html">Cadastre-se</a>
         </p>
-      </div>
-    </div>
+      </section>
+    </main>
 
     <script src="../js/signin.js"></script>
   </body>
 </html>
+
+
