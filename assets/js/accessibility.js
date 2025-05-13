@@ -67,28 +67,42 @@ document.addEventListener('DOMContentLoaded', function() {
     renderNews();
   }
 
-  // Menu de categorias
-  const categoriasBtn = document.getElementById('categoriasBtn');
-  const categoriasMenu = document.getElementById('categoriasMenu');
-
-  if (categoriasBtn && categoriasMenu) {
-    categoriasBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isVisible = categoriasMenu.style.display === 'block';
-      categoriasMenu.style.display = isVisible ? 'none' : 'block';
-      categoriasBtn.setAttribute('aria-expanded', !isVisible);
-
-      categoriasMenu.setAttribute('role', 'menu');
-      categoriasMenu.querySelectorAll('a').forEach(item => {
-        item.setAttribute('role', 'menuitem');
-      });
+  document.addEventListener('DOMContentLoaded', function() {
+    const categoryItem = document.querySelector('.has-submenu');
+    const submenu = document.querySelector('.submenu');
+    const categoryLink = document.querySelector('.has-submenu > a');
+    
+    // Toggle submenu on click (mobile)
+    categoryLink.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) { // Adjust breakpoint as needed
+            e.preventDefault();
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            submenu.style.opacity = isExpanded ? '0' : '1';
+            submenu.style.visibility = isExpanded ? 'hidden' : 'visible';
+            submenu.style.transform = isExpanded ? 'translateY(-10px)' : 'translateY(0)';
+        }
     });
-
-    document.addEventListener('click', (e) => {
-      if (!categoriasBtn.contains(e.target) && !categoriasMenu.contains(e.target)) {
-        categoriasMenu.style.display = 'none';
-        categoriasBtn.setAttribute('aria-expanded', false);
-      }
+    
+    // Close submenu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!categoryItem.contains(e.target)) {
+            categoryLink.setAttribute('aria-expanded', 'false');
+            submenu.style.opacity = '0';
+            submenu.style.visibility = 'hidden';
+            submenu.style.transform = 'translateY(-10px)';
+        }
     });
-  }
+    
+    // Keyboard navigation
+    categoryItem.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            categoryLink.setAttribute('aria-expanded', 'false');
+            submenu.style.opacity = '0';
+            submenu.style.visibility = 'hidden';
+            submenu.style.transform = 'translateY(-10px)';
+            categoryLink.focus();
+        }
+    });
+});
 });

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Container de notícias
   const newsContainer = document.getElementById('news-container');
   
-  // Simular carregamento de notícias
+  // Dados das notícias (aumentado para 6)
   const newsData = [
     {
       title: "O que é Acessibilidade?",
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
       date: "30/04/2025",
       category: "Geral",
       image: "./assets/images/Deficiencia_Visual.png",
-
     },
     {
       title: "MPDFT promove debate sobre estratégias de inclusão nas escolas",
@@ -43,13 +42,28 @@ document.addEventListener('DOMContentLoaded', function() {
       date: "03/05/2025",
       category: "Social",
       image: "./assets/images/social.jpg"
+    },
+    {
+      title: "Evento Cultural Inclusivo",
+      excerpt: "Festival de arte contemporânea terá recursos de acessibilidade para todos os públicos.",
+      date: "04/05/2025",
+      category: "Cultura",
+      image: "./assets/images/evento-cultural.jpg"
+    },
+    {
+      title: "Avancos na Educação Especial",
+      excerpt: "Novas tecnologias assistivas estão revolucionando o aprendizado para estudantes com deficiência.",
+      date: "05/05/2025",
+      category: "Educação",
+      image: "./assets/images/educacao-especial.jpg"
     }
   ];
   
-  function renderNews() {
-    newsContainer.innerHTML = '';
+  // Função para renderizar notícias (com limite opcional)
+  function renderNews(container, newsArray, limit = null) {
+    const newsToRender = limit ? newsArray.slice(0, limit) : newsArray;
     
-    newsContainer.innerHTML += newsData.map(news => `
+    container.innerHTML = newsToRender.map(news => `
       <article class="news-card">
         <div class="card-image">
           <img src="${news.image}" alt="${news.title}" loading="lazy">
@@ -67,10 +81,21 @@ document.addEventListener('DOMContentLoaded', function() {
     `).join('');
   }
   
-  renderNews();
+  // Renderiza apenas 4 notícias na home
+  if (newsContainer) {
+    renderNews(newsContainer, newsData, 4);
+  }
   
+  // Configura o link "Ver todas"
+  const seeAllLink = document.querySelector('.see-all');
+  if (seeAllLink) {
+    seeAllLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Armazena os dados das notícias para usar na outra página
+      localStorage.setItem('newsData', JSON.stringify(newsData));
+      window.location.href = 'assets/html/todas-noticias.html';
+    });
+  }
 
 
-
-  
 });
