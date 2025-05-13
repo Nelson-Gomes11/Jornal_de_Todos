@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
       excerpt: "Novas tecnologias assistivas estão revolucionando o aprendizado para estudantes com deficiência.",
       date: "05/05/2025",
       category: "Educação",
-      image: "./assets/images/educacao-especial.jpg"
+      image: "./assets/images/images.jpeg"
     }
   ];
   
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <p class="card-excerpt">${news.excerpt}</p>
           <div class="card-meta">
             <span>${news.date}</span>
-            <a href="#" class="read-more">Ler mais</a>
+         
           </div>
         </div>
       </article>

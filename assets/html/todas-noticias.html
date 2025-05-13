@@ -90,37 +90,36 @@
   
   <script src="../js/accessibility.js"></script>
   <script>
-   document.addEventListener('DOMContentLoaded', function() {
-  const allNewsContainer = document.getElementById('all-news-container');
-  
-  // Recupera os dados das notícias armazenados
-  const storedNews = localStorage.getItem('newsData');
-  
-  if (storedNews) {
-    const newsData = JSON.parse(storedNews);
-    
-    // Renderiza todas as notícias com caminhos absolutos para as imagens
-    allNewsContainer.innerHTML = newsData.map(news => `
-      <article class="news-card">
-        <div class="card-image">
-          <img src="/Jornal_de_Todos${news.image.replace('../', '/images/')}" alt="${news.title}" loading="lazy">
-        </div>
-        <div class="card-content">
-          <span class="card-category">${news.category}</span>
-          <h3 class="card-title">${news.title}</h3>
-          <p class="card-excerpt">${news.excerpt}</p>
-          <div class="card-meta">
-            <span>${news.date}</span>
-            <a href="#" class="read-more">Ler mais</a>
-          </div>
-        </div>
-      </article>
-    `).join('');
-  } else {
-    // Se não houver dados, redireciona para a home
-    window.location.href = 'telahome.html';
-  }
-});
+    document.addEventListener('DOMContentLoaded', function () {
+      const newsContainer = document.getElementById('all-news-container');
+
+      const storedNews = localStorage.getItem('newsData');
+
+      if (storedNews && newsContainer) {
+        const newsData = JSON.parse(storedNews);
+
+        renderNews(newsContainer, newsData);
+      }
+
+      function renderNews(container, newsArray) {
+        container.innerHTML = newsArray.map(news => `
+          <article class="news-card">
+            <div class="card-image">
+              <img src="../../${news.image}" alt="${news.title}" loading="lazy">
+            </div>
+            <div class="card-content">
+              <span class="card-category">${news.category}</span>
+              <h3 class="card-title">${news.title}</h3>
+              <p class="card-excerpt">${news.excerpt}</p>
+              <div class="card-meta">
+                <span>${news.date}</span>
+                <a href="#" class="read-more">Ler mais</a>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      }
+    });
   </script>
 </body>
 </html>
