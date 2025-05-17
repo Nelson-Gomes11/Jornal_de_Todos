@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia | Jornal De Todos</title>
+    <style>
+        :root {
+            /* Cores com alto contraste para modo claro */
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --header-bg: #000000;
+            --header-text: #ffffff;
+            --accent-color: #0056b3; /* Azul mais escuro para melhor contraste */
+            --card-bg: #ffffff;
+            --card-shadow: 0 0 0 1px #000000; /* Borda sólida para melhor definição */
+            --excerpt-color: #333333;
+            --section-border: #000000;
+            --focus-outline: 3px solid #ff0000; /* Vermelho para melhor visibilidade do foco */
+        }
+        
+        .dark-mode {
+            /* Cores com alto contraste para modo escuro */
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --header-bg: #000000;
+            --header-text: #ffffff;
+            --accent-color: #64b5f6;
+            --card-bg: #1e1e1e;
+            --card-shadow: 0 0 0 1px #ffffff;
+            --excerpt-color: #cccccc;
+            --section-border: #666666;
+        }
+        
+        .high-contrast {
+            /* Modo alto contraste extremo */
+            --bg-color: #000000;
+            --text-color: #ffff00; /* Texto amarelo */
+            --header-bg: #000000;
+            --header-text: #ffff00;
+            --accent-color: #00ffff;
+            --card-bg: #000000;
+            --card-shadow: 0 0 0 3px #ffff00;
+            --excerpt-color: #ffff00;
+            --section-border: #ffff00;
+        }
+        
+        .large-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+        
+        .large-text .card-title,
+        .large-text .main-feature-title,
+        .large-text .tech-side-title {
+            font-size: 1.8rem;
+        }
+        
+        .large-text .card-excerpt,
+        .large-text .read-more,
+        .large-text .tech-side-item p {
+            font-size: 1.2rem;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .accessibility-toolbar {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .accessibility-btn {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            border: 2px solid var(--header-text);
+            border-radius: 4px;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            min-width: 44px;
+            min-height: 44px;
+        }
+        
+        .accessibility-btn:hover,
+        .accessibility-btn:focus {
+            background-color: var(--accent-color);
+            outline: none;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        /* Featured Tech News */
+        .featured-tech {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .main-feature {
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 3px solid var(--accent-color);
+        }
+        
+        .main-feature-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .main-feature-image[aria-hidden="true"] {
+            display: none;
+        }
+        
+        .main-feature-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem;
+        }
+        
+        .high-contrast .main-feature-content {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+        
+        .main-feature-category {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .main-feature-title {
+            font-size: 2rem;
+            margin: 1rem 0;
+            line-height: 1.3;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+        }
+        
+        .main-feature p {
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-size: 1.1rem;
+        }
+        
+        .tech-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .tech-side-item {
+            background-color: var(--card-bg);
+            border-radius: 0;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .tech-side-item:focus-within {
+            outline: var(--focus-outline);
+            outline-offset: 3px;
+        }
+        
+        .tech-side-category {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-side-title {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+        
+        /* Tech News Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .tech-card {
+            background-color: var(--card-bg);
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .tech-card:focus-within {
+            outline: var(--focus-outline);
+            outline-offset: 3px;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tech-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .tech-card-image[aria-hidden="true"] {
+            display: none;
+        }
+        
+        .tech-card-content {
+            padding: 1.5rem;
+        }
+        
+        .tech-card-category {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-card-title {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+        
+        .tech-card-excerpt {
+            color: var(--excerpt-color);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--accent-color);
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-block;
+            padding: 0.5rem;
+            border: 2px solid transparent;
+        }
+        
+        .read-more:hover,
+        .read-more:focus {
+            text-decoration: none;
+            outline: none;
+            border: 2px solid var(--accent-color);
+        }
+        
+        /* Tech Trends */
+        .tech-trends {
+            margin: 3rem 0;
+            background-color: var(--card-bg);
+            border-radius: 0;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border: 3px solid var(--accent-color);
+        }
+        
+        .trends-title {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .trends-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .trend-item {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 0.8rem 1.2rem;
+            border-radius: 0;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .trend-item:hover,
+        .trend-item:focus {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            outline: none;
+        }
+        
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            z-index: 100;
+            text-decoration: underline;
+        }
+        
+        .skip-link:focus {
+            left: 0;
+            outline: 3px solid var(--text-color);
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .featured-tech {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-feature-image {
+                height: 300px;
+            }
+            
+            .main-feature-title {
+                font-size: 1.5rem;
+            }
+            
+            .accessibility-toolbar {
+                position: static;
+                transform: none;
+                justify-content: center;
+                margin-top: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link" aria-label="Pular para o conteúdo principal">Pular para o conteúdo</a>
+    
+    <header>
+        <h1>Jornal De Todos</h1>
+        <div class="accessibility-toolbar" aria-label="Ferramentas de acessibilidade">
+            <button id="fontToggle" class="accessibility-btn" aria-label="Aumentar tamanho da fonte" aria-pressed="false">
+                <span aria-hidden="true">A+</span>
+                <span class="visually-hidden">Aumentar tamanho da fonte</span>
+            </button>
+            <button id="themeToggle" class="accessibility-btn" aria-label="Alternar tema escuro" aria-pressed="false">
+                <span aria-hidden="true">🌙</span>
+                <span class="visually-hidden">Alternar tema escuro</span>
+            </button>
+            <button id="contrastToggle" class="accessibility-btn" aria-label="Alternar alto contraste" aria-pressed="false">
+                <span aria-hidden="true">⚫⚪</span>
+                <span class="visually-hidden">Alternar alto contraste</span>
+            </button>
+            <button id="imagesToggle" class="accessibility-btn" aria-label="Ocultar imagens" aria-pressed="false">
+                <span aria-hidden="true">🖼️</span>
+                <span class="visually-hidden">Ocultar imagens</span>
+            </button>
+        </div>
+    </header>
+    
+    <main id="main-content" tabindex="-1">
+        <div class="container">
+            <h2 class="section-title" id="tech-heading">Tecnologia</h2>
+            
+            <!-- Destaque em Tecnologia -->
+            <div class="featured-tech" aria-labelledby="tech-heading">
+                <article class="main-feature" aria-labelledby="main-feature-title">
+                    <img src="https://via.placeholder.com/800x400?text=Inteligência+Artificial" 
+                         alt="Diagrama de rede neural com nós interconectados representando inteligência artificial, com destaque para logotipo de tecnologia brasileira" 
+                         class="main-feature-image"
+                         id="main-tech-image">
+                    <div class="main-feature-content">
+                        <span class="main-feature-category">Inovação</span>
+                        <h3 id="main-feature-title" class="main-feature-title">Nova IA brasileira rivaliza com modelos internacionais</h3>
+                        <p aria-describedby="main-tech-image">Pesquisadores da USP desenvolvem sistema com 90% de precisão em português, usando tecnologia 100% nacional. Plataforma já está sendo testada por grandes empresas e pode revolucionar o atendimento ao cliente no país.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre a nova IA brasileira e seus recursos">Ler mais →</a>
+                    </div>
+                </article>
+                
+                <div class="tech-sidebar">
+                    <article class="tech-side-item" aria-labelledby="side-item1-title" tabindex="0">
+                        <span class="tech-side-category">Startups</span>
+                        <h3 id="side-item1-title" class="tech-side-title">Aplicativo brasileiro é eleito o melhor para pequenos negócios</h3>
+                        <p>Plataforma nacional supera concorrentes internacionais em premiação nos EUA.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre o aplicativo premiado para pequenos negócios">Ler mais →</a>
+                    </article>
+                    
+                    <article class="tech-side-item" aria-labelledby="side-item2-title" tabindex="0">
+                        <span class="tech-side-category">Segurança</span>
+                        <h3 id="side-item2-title" class="tech-side-title">Vazamento de dados atinge 3 milhões de usuários</h3>
+                        <p>Falha em sistema de empresa brasileira expõe informações sensíveis.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre o vazamento de dados e como se proteger">Ler mais →</a>
+                    </article>
+                    
+                    <article class="tech-side-item" aria-labelledby="side-item3-title" tabindex="0">
+                        <span class="tech-side-category">Gadgets</span>
+                        <h3 id="side-item3-title" class="tech-side-title">Novo smartphone dobrável chega ao Brasil por preço surpresa</h3>
+                        <p>Modelo premium custará 30% menos que versão internacional.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre o novo smartphone dobrável e suas especificações">Ler mais →</a>
+                    </article>
+                </div>
+            </div>
+            
+            <!-- Tendências em Tech -->
+            <section class="tech-trends" aria-labelledby="trends-heading">
+                <h3 id="trends-heading" class="trends-title">Tendências em Tecnologia</h3>
+                <div class="trends-list">
+                    <a href="#" class="trend-item" aria-label="Notícias sobre computação quântica e seus avanços">Computação Quântica</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre tecnologia 5G e implementação no Brasil">5G</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre desenvolvimento do metaverso">Metaverso</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre blockchain e criptomoedas">Blockchain</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre Internet das Coisas e aplicações">IoT</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre carros elétricos e tecnologia automotiva">Carros Elétricos</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre cibersegurança e proteção de dados">Cibersegurança</a>
+                    <a href="#" class="trend-item" aria-label="Notícias sobre realidade aumentada e suas aplicações">Realidade Aumentada</a>
+                </div>
+            </section>
+            
+            <!-- Notícias de Tecnologia -->
+            <div class="tech-grid" aria-labelledby="tech-heading">
+                <!-- Card 1 -->
+                <article class="tech-card" aria-labelledby="tech-article1-title">
+                    <img src="https://via.placeholder.com/400x300?text=Robótica" 
+                         alt="Robô humanoide de cor branca realizando tarefas domésticas em ambiente residencial moderno" 
+                         class="tech-card-image"
+                         id="tech-article1-image">
+                    <div class="tech-card-content">
+                        <span class="tech-card-category">Robótica</span>
+                        <h3 id="tech-article1-title" class="tech-card-title">Robôs domésticos começam a ser vendidos no Brasil</h3>
+                        <p class="tech-card-excerpt" aria-describedby="tech-article1-image">Primeiros modelos capazes de realizar tarefas complexas como limpeza e organização chegam ao mercado com preços a partir de R$ 5 mil. Tecnologia inclui reconhecimento de voz em português.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre robôs domésticos disponíveis no Brasil">Ler mais →</a>
+                    </div>
+                </article>
+                
+                <!-- Card 2 -->
+                <article class="tech-card" aria-labelledby="tech-article2-title">
+                    <img src="https://via.placeholder.com/400x300?text=Energia+Solar" 
+                         alt="Painéis solares de nova geração instalados em telhado residencial, com céu azul ao fundo" 
+                         class="tech-card-image"
+                         id="tech-article2-image">
+                    <div class="tech-card-content">
+                        <span class="tech-card-category">Energia</span>
+                        <h3 id="tech-article2-title" class="tech-card-title">Brasil desenvolve painel solar com eficiência recorde</h3>
+                        <p class="tech-card-excerpt" aria-describedby="tech-article2-image">Tecnologia nacional desenvolvida na UFSC alcança 32% de eficiência na conversão de energia, superando marcas internacionais. Novos painéis devem chegar ao mercado em 2026.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre os painéis solares brasileiros de alta eficiência">Ler mais →</a>
+                    </div>
+                </article>
+                
+                <!-- Card 3 -->
+                <article class="tech-card" aria-labelledby="tech-article3-title">
+                    <img src="https://via.placeholder.com/400x300?text=Games" 
+                         alt="Tela do jogo brasileiro 'Aritana' mostrando cenário de floresta tropical com personagem indígena" 
+                         class="tech-card-image"
+                         id="tech-article3-image">
+                    <div class="tech-card-content">
+                        <span class="tech-card-category">Games</span>
+                        <h3 id="tech-article3-title" class="tech-card-title">Estúdio brasileiro lança jogo aclamado internacionalmente</h3>
+                        <p class="tech-card-excerpt" aria-describedby="tech-article3-image">Produção independente baseada em cultura indígena conquista prêmios e é indicada ao "Melhor Jogo Independente" no Game Awards. Jogo já vendeu 500 mil cópias em uma semana.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre o jogo brasileiro premiado internacionalmente">Ler mais →</a>
+                    </div>
+                </article>
+                
+                <!-- Card 4 -->
+                <article class="tech-card" aria-labelledby="tech-article4-title">
+                    <img src="https://via.placeholder.com/400x300?text=Programação" 
+                         alt="Grupo diversificado de estudantes em sala de aula aprendendo programação em computadores" 
+                         class="tech-card-image"
+                         id="tech-article4-image">
+                    <div class="tech-card-content">
+                        <span class="tech-card-category">Educação</span>
+                        <h3 id="tech-article4-title" class="tech-card-title">Escolas públicas terão ensino de programação obrigatório</h3>
+                        <p class="tech-card-excerpt" aria-describedby="tech-article4-image">Novo currículo do ensino médio incluirá linguagens Python e JavaScript a partir de 2025. Projeto visa preparar jovens para mercado de trabalho digital.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre o ensino de programação nas escolas públicas">Ler mais →</a>
+                    </div>
+                </article>
+                
+                <!-- Card 5 -->
+                <article class="tech-card" aria-labelledby="tech-article5-title">
+                    <img src="https://via.placeholder.com/400x300?text=Satélite" 
+                         alt="Satélite brasileiro Amazônia-1 sendo lançado ao espaço com foguete decolando da base" 
+                         class="tech-card-image"
+                         id="tech-article5-image">
+                    <div class="tech-card-content">
+                        <span class="tech-card-category">Espaço</span>
+                        <h3 id="tech-article5-title" class="tech-card-title">Brasil lança satélite com tecnologia 100% nacional</h3>
+                        <p class="tech-card-excerpt" aria-describedby="tech-article5-image">Equipamento desenvolvido pelo INPE vai monitorar desmatamento e auxiliar na agricultura de precisão. Projeto levou 8 anos para ser concluído.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre o satélite brasileiro de monitoramento">Ler mais →</a>
+                    </div>
+                </article>
+                
+                <!-- Card 6 -->
+                <article class="tech-card" aria-labelledby="tech-article6-title">
+                    <img src="https://via.placeholder.com/400x300?text=Telemedicina" 
+                         alt="Médico realizando consulta por videoconferência com paciente idoso em área rural" 
+                         class="tech-card-image"
+                         id="tech-article6-image">
+                    <div class="tech-card-content">
+                        <span class="tech-card-category">Saúde</span>
+                        <h3 id="tech-article6-title" class="tech-card-title">Plataforma de telemedicina atende 1 milhão de brasileiros</h3>
+                        <p class="tech-card-excerpt" aria-describedby="tech-article6-image">Serviço gratuito do governo conecta pacientes a médicos em todo o país, reduzindo filas no SUS. 60% dos atendimentos são para regiões remotas.</p>
+                        <a href="#" class="read-more" aria-label="Ler mais sobre a plataforma de telemedicina do SUS">Ler mais →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Toggle de tamanho de fonte
+        const fontToggle = document.getElementById('fontToggle');
+        fontToggle.addEventListener('click', () => {
+            const isPressed = fontToggle.getAttribute('aria-pressed') === 'true';
+            document.body.classList.toggle('large-text');
+            fontToggle.setAttribute('aria-pressed', String(!isPressed));
+            localStorage.setItem('largeText', !isPressed);
+            
+            // Atualiza o ícone
+            const icon = fontToggle.querySelector('span[aria-hidden="true"]');
+            icon.textContent = isPressed ? 'A+' : 'A-';
+        });
+        
+        if (localStorage.getItem('largeText') === 'true') {
+            document.body.classList.add('large-text');
+            fontToggle.setAttribute('aria-pressed', 'true');
+            fontToggle.querySelector('span[aria-hidden="true"]').textContent = 'A-';
+        }
+        
+        // Toggle de tema escuro
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const isPressed = themeToggle.getAttribute('aria-pressed') === 'true';
+            document.body.classList.toggle('dark-mode');
+            themeToggle.setAttribute('aria-pressed', String(!isPressed));
+            localStorage.setItem('darkMode', !isPressed);
+            
+            // Atualiza o ícone
+            const icon = themeToggle.querySelector('span[aria-hidden="true"]');
+            icon.textContent = isPressed ? '🌙' : '☀️';
+        });
+        
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            themeToggle.setAttribute('aria-pressed', 'true');
+            themeToggle.querySelector('span[aria-hidden="true"]').textContent = '☀️';
+        }
+        
+        // Toggle de alto contraste
+        const contrastToggle = document.getElementById('contrastToggle');
+        contrastToggle.addEventListener('click', () => {
+            const isPressed = contrastToggle.getAttribute('aria-pressed') === 'true';
+            document.body.classList.toggle('high-contrast');
+            contrastToggle.setAttribute('aria-pressed', String(!isPressed));
+            localStorage.setItem('highContrast', !isPressed);
+            
+            // Atualiza o ícone
+            const icon = contrastToggle.querySelector('span[aria-hidden="true"]');
+            icon.textContent = isPressed ? '⚫⚪' : '🌈';
+        });
+        
+        if (localStorage.getItem('highContrast') === 'true') {
+            document.body.classList.add('high-contrast');
+            contrastToggle.setAttribute('aria-pressed', 'true');
+            contrastToggle.querySelector('span[aria-hidden="true"]').textContent = '🌈';
+        }
+        
+        // Toggle para ocultar imagens
+        const imagesToggle = document.getElementById('imagesToggle');
+        imagesToggle.addEventListener('click', () => {
+            const isPressed = imagesToggle.getAttribute('aria-pressed') === 'true';
+            const images = document.querySelectorAll('img');
+            
+            images.forEach(img => {
+                img.setAttribute('aria-hidden', String(!isPressed));
+                img.style.display = isPressed ? 'block' : 'none';
+            });
+            
+            imagesToggle.setAttribute('aria-pressed', String(!isPressed));
+            localStorage.setItem('hideImages', !isPressed);
+            
+            // Atualiza o ícone
+            const icon = imagesToggle.querySelector('span[aria-hidden="true"]');
+            icon.textContent = isPressed ? '🖼️' : '👁️';
+        });
+        
+        if (localStorage.getItem('hideImages') === 'true') {
+            document.querySelectorAll('img').forEach(img => {
+                img.setAttribute('aria-hidden', 'true');
+                img.style.display = 'none';
+            });
+            imagesToggle.setAttribute('aria-pressed', 'true');
+            imagesToggle.querySelector('span[aria-hidden="true"]').textContent = '👁️';
+        }
+        
+        // Foco no conteúdo principal para leitores de tela
+        document.addEventListener('DOMContentLoaded', () => {
+            const skipLink = document.querySelector('.skip-link');
+            const mainContent = document.getElementById('main-content');
+            
+            skipLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                mainContent.focus();
+            });
+            
+            // Adiciona navegação por teclado
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+            
+            document.addEventListener('mousedown', () => {
+                document.body.classList.remove('keyboard-navigation');
+            });
+        });
+    </script>
+</body>
+</html>
