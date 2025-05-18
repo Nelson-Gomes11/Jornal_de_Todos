@@ -15,6 +15,7 @@
             --light-text: #f9f9f9;
             --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --font-alt: 'Georgia', serif;
+            --focus-outline: 3px solid #ff0000;
         }
         
         * {
@@ -33,6 +34,24 @@
             min-height: 100vh;
         }
         
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            z-index: 100;
+            text-decoration: underline;
+        }
+        
+        .skip-link:focus {
+            left: 0;
+            outline: 3px solid var(--text-color);
+        }
+        
         /* Header */
         header {
             background-color: var(--dark-bg);
@@ -42,10 +61,20 @@
             position: relative;
         }
         
+      header a {
+    text-decoration: none;
+}
+
+
+header a:hover, 
+header a:focus {
+    text-decoration: none;
+}
         .logo {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+        
         }
         
         .tagline {
@@ -67,6 +96,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
+            list-style: none;
         }
         
         nav a {
@@ -104,9 +134,10 @@
             padding: 2rem;
             margin-bottom: 2rem;
         }
-        a{  
-            color: #fff;
-            text-decoration: none;
+        
+        a {  
+            color: var(--secondary-color);
+            text-decoration: underline;
         }
       
         h1 {
@@ -114,7 +145,6 @@
             margin-bottom: 1.5rem;
             font-size: 2.2rem;
             font-family: var(--font-alt);
-          
         }
         
         h2 {
@@ -172,11 +202,13 @@
         
         .contact-info a {
             color: var(--secondary-color);
-            text-decoration: none;
+            text-decoration: underline;
         }
         
-        .contact-info a:hover {
-            text-decoration: underline;
+        .contact-info a:hover,
+        .contact-info a:focus {
+            text-decoration: none;
+            outline: 2px solid var(--accent-color);
         }
         
         /* Accessibility Features */
@@ -190,15 +222,20 @@
         
         .accessibility-btn {
             background: none;
-            border: none;
+            border: 2px solid var(--light-text);
             color: var(--light-text);
             cursor: pointer;
             font-size: 0.9rem;
             padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            min-width: 44px;
+            min-height: 44px;
         }
         
-        .accessibility-btn:hover {
-            text-decoration: underline;
+        .accessibility-btn:hover,
+        .accessibility-btn:focus {
+            background-color: var(--accent-color);
+            outline: none;
         }
         
         /* Footer */
@@ -216,15 +253,19 @@
             flex-wrap: wrap;
             gap: 1.5rem;
             margin-bottom: 1.5rem;
+            list-style: none;
         }
         
         .footer-links a {
             color: var(--light-text);
             text-decoration: none;
+            padding: 0.5rem;
         }
         
-        .footer-links a:hover {
+        .footer-links a:hover,
+        .footer-links a:focus {
             text-decoration: underline;
+            outline: none;
         }
         
         .copyright {
@@ -246,120 +287,235 @@
             .about-container {
                 padding: 1.5rem;
             }
+            
+            .accessibility-bar {
+                justify-content: center;
+            }
         }
         
-        /* High Contrast Mode */
+        /* High Contrast Mode - Preto/Branco */
         .high-contrast {
-            --primary-color: #000;
-            --secondary-color: #000;
-            --accent-color: #000;
-            --text-color: #000;
-            --light-bg: #fff;
-            --dark-bg: #000;
-            --light-text: #fff;
-            background-color: #fff !important;
-            color: #000 !important;
+            --primary-color: #000000;
+            --secondary-color: #0056b3;
+            --accent-color: #ff0000;
+            --text-color: #000000;
+            --light-bg: #ffffff;
+            --dark-bg: #000000;
+            --light-text: #ffffff;
+            background-color: #ffffff !important;
+            color: #000000 !important;
         }
         
         .high-contrast a {
-            color: #000 !important;
+            color: #0056b3 !important;
             text-decoration: underline !important;
         }
         
         .high-contrast .about-container,
         .high-contrast .team-member,
-        .high-contrast .contact-info {
-            border: 2px solid #000 !important;
+        .high-contrast .contact-info,
+        .high-contrast .mission-statement {
+            border: 3px solid #000000 !important;
+        }
+        
+        /* High Contrast Mode - Amarelo/Preto */
+        .high-contrast-yellow {
+            --primary-color: #000000;
+            --secondary-color: #000000;
+            --accent-color: #000000;
+            --text-color: #ffff00;
+            --light-bg: #000000;
+            --dark-bg: #000000;
+            --light-text: #ffff00;
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+        }
+        
+        .high-contrast-yellow a {
+            color: #ffff00 !important;
+            text-decoration: underline !important;
+        }
+        
+        .high-contrast-yellow .about-container,
+        .high-contrast-yellow .team-member,
+        .high-contrast-yellow .contact-info,
+        .high-contrast-yellow .mission-statement {
+            border: 3px solid #ffff00 !important;
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+        }
+        
+        .high-contrast-yellow header,
+        .high-contrast-yellow nav,
+        .high-contrast-yellow footer {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border-bottom: 2px solid #ffff00;
+        }
+        
+        .high-contrast-yellow .accessibility-bar {
+            background-color: #000000 !important;
+            border-bottom: 2px solid #ffff00;
+        }
+        
+        .high-contrast-yellow .accessibility-btn {
+            border-color: #ffff00;
+            color: #ffff00;
+        }
+        
+        /* Large Text Mode */
+        .large-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+        
+        .large-text h1 {
+            font-size: 2.5rem;
+        }
+        
+        .large-text h2 {
+            font-size: 2rem;
+        }
+        
+        .large-text h3 {
+            font-size: 1.5rem;
+        }
+        
+        .large-text p,
+        .large-text li,
+        .large-text a {
+            font-size: 1.1rem;
+        }
+        
+        /* Focus Styles */
+        a:focus,
+        button:focus,
+        input:focus,
+        [tabindex="0"]:focus {
+            outline: var(--focus-outline);
+            outline-offset: 3px;
+        }
+        
+        /* Hidden for Screen Readers */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link" aria-label="Pular para o conteúdo principal">Pular para o conteúdo</a>
+    
     <!-- Accessibility Bar -->
-    <div class="accessibility-bar">
-        <button class="accessibility-btn" id="increaseFont">A+</button>
-        <button class="accessibility-btn" id="decreaseFont">A-</button>
-        <button class="accessibility-btn" id="highContrast">Alto Contraste</button>
-        <button class="accessibility-btn" id="resetAccessibility">Resetar</button>
+    <div class="accessibility-bar" aria-label="Ferramentas de acessibilidade">
+        <button class="accessibility-btn" id="increaseFont" aria-label="Aumentar tamanho da fonte">
+            <span aria-hidden="true">A+</span>
+            <span class="visually-hidden">Aumentar tamanho da fonte</span>
+        </button>
+        <button class="accessibility-btn" id="highContrastBW" aria-label="Alternar alto contraste preto e branco" aria-pressed="false">
+            <span aria-hidden="true">◑</span>
+            <span class="visually-hidden">Alternar alto contraste preto e branco</span>
+        </button>
+        <button class="accessibility-btn" id="highContrastYellow" aria-label="Alternar alto contraste amarelo e preto" aria-pressed="false">
+            <span aria-hidden="true">◔</span>
+            <span class="visually-hidden">Alternar alto contraste amarelo e preto</span>
+        </button>
     </div>
     
-    <header>
+    <header role="banner">
         <a href="../../telahome.html">
-                    <div class="logo">Jornal De Todos</div>
+            <div class="logo">Jornal De Todos</div>
         </a>
         <div class="tagline">Informação acessível para todas as pessoas</div>
     </header>
     
-    <nav>
+    <nav aria-label="Navegação principal">
       
-        <div class="user-nav">
-            <a href="signin.html">Login</a>
-            <a href="signup.html">Cadastre-se</a>
-        </div>
+        <ul class="user-nav" role="menubar">
+            <li role="none"><a href="signin.html" role="menuitem">Login</a></li>
+            <li role="none"><a href="signup.html" role="menuitem">Cadastre-se</a></li>
+        </ul>
     </nav>
     
-    <main>
+    <main id="main-content" tabindex="-1" role="main">
         <div class="about-container">
             <h1>Sobre Nós</h1>
             
             <p>O <strong>Jornal De Todos</strong> é uma plataforma de notícias comprometida com a inclusão, acessibilidade e diversidade. Nosso objetivo é tornar a informação disponível para todas as pessoas, independentemente de suas habilidades ou condições.</p>
         
-            <div class="mission-statement">
+            <div class="mission-statement" aria-label="Declaração de missão">
                 "Promovemos o acesso à informação como um direito fundamental, criando conteúdo que respeita e valoriza a diversidade humana em todas as suas formas."
             </div>
             
-            <h2>Nossa História</h2>
-            <p>Fundado em 2025 por um grupo de estudantes desenvolvedores com diferentes habilidades e experiências de vida, o Jornal De Todos nasceu da necessidade de criar um veículo de comunicação verdadeiramente inclusivo.</p>
-            <p>Desde o início, nos comprometemos a eliminar barreiras na comunicação, implementando soluções inovadoras para tornar nosso conteúdo acessível para pessoas com diferentes tipos de deficiência.</p>
+            <section aria-labelledby="historia-heading">
+                <h2 id="historia-heading">Nossa História</h2>
+                <p>Fundado em 2025 por um grupo de estudantes desenvolvedores com diferentes habilidades e experiências de vida, o Jornal De Todos nasceu da necessidade de criar um veículo de comunicação verdadeiramente inclusivo.</p>
+                <p>Desde o início, nos comprometemos a eliminar barreiras na comunicação, implementando soluções inovadoras para tornar nosso conteúdo acessível para pessoas com diferentes tipos de deficiência.</p>
+            </section>
             
-            <h2>Nossa Equipe</h2>
-            <p>Nossa equipe é composta por profissionais diversos, incluindo pessoas com diferentes habilidades, origens e perspectivas:</p>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="https://via.placeholder.com/100" alt="Foto de Marcelo, ">
-                    <h3>Marcelo</h3>
-                    <p>Orientador</p>
-                    <p>Professor - Orientador</p>
+            <section aria-labelledby="equipe-heading">
+                <h2 id="equipe-heading">Nossa Equipe</h2>
+                <p>Nossa equipe é composta por profissionais diversos, incluindo pessoas com diferentes habilidades, origens e perspectivas:</p>
+                
+                <div class="team-grid" role="list">
+                    <div class="team-member" role="listitem">
+                        <img src="https://via.placeholder.com/100" alt="Foto de Marcelo, orientador do projeto, homem de cabelos grisalhos sorrindo">
+                        <h3>Marcelo</h3>
+                        <p>Orientador</p>
+                        <p>Professor - Orientador</p>
+                    </div>
+                    <div class="team-member" role="listitem">
+                        <img src="https://via.placeholder.com/100" alt="Foto de Lucas Gabriel, desenvolvedor, homem jovem usando óculos">
+                        <h3>Lucas Gabriel</h3>
+                        <p>Desenvolvedor</p>
+                        <p>Desenvolvedor especialista</p>
+                    </div>
+                    <div class="team-member" role="listitem">
+                        <img src="https://via.placeholder.com/100" alt="Foto de Nelson Gomes, desenvolvedor web, homem sorrindo com camisa social">
+                        <h3>Nelson Gomes</h3>
+                        <p>Desenvolvedor Web</p>
+                        <p>Especialista</p>
+                    </div>
                 </div>
-                <div class="team-member">
-                    <img src="https://via.placeholder.com/100" alt="Foto de Lucas Gabriel">
-                    <h3>Lucas Gabriel</h3>
-                    <p>Desenvolvedor</p>
-                    <p>Desenvolvedor especialista</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://via.placeholder.com/100" alt="Foto de Nelson Gomes">
-                    <h3>Nelson Gomes</h3>
-                    <p>Desenvolvedor Web</p>
-                    <p>Especialista</p>
-                </div>
-            </div>
+            </section>
             
-            <h2>Nossos Valores</h2>
-            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
-                <li><strong>Inclusão:</strong> Criamos conteúdo para todas as pessoas</li>
-                <li><strong>Acessibilidade:</strong> Seguimos as diretrizes ARIA em todos nossos materiais</li>
-                <li><strong>Diversidade:</strong> Valorizamos diferentes perspectivas e experiências</li>
-                <li><strong>Transparência:</strong> Somos claros sobre nossos processos e fontes</li>
-            </ul>
+            <section aria-labelledby="valores-heading">
+                <h2 id="valores-heading">Nossos Valores</h2>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;" role="list">
+                    <li role="listitem"><strong>Inclusão:</strong> Criamos conteúdo para todas as pessoas</li>
+                    <li role="listitem"><strong>Acessibilidade:</strong> Seguimos as diretrizes WCAG em todos nossos materiais</li>
+                    <li role="listitem"><strong>Diversidade:</strong> Valorizamos diferentes perspectivas e experiências</li>
+                    <li role="listitem"><strong>Transparência:</strong> Somos claros sobre nossos processos e fontes</li>
+                </ul>
+            </section>
             
-            <h2>Contato</h2>
-            <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:contato@jornaldetodos.com">contato@jornaldetodos.com</a></p>
-                <p><strong>Telefone:</strong> (XX) XXXX-XXXX (com suporte a texto)</p>
-                <p><strong>Endereço:</strong> Rua da Inclusão, 123 - Centro, Cidade/Estado</p>
-                <p><strong>Redes Sociais:</strong> Todas nossas redes possuem legendas e descrições alternativas</p>
-            </div>
+            <section aria-labelledby="contato-heading">
+                <h2 id="contato-heading">Contato</h2>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:contato@jornaldetodos.com">contato@jornaldetodos.com</a></p>
+                    <p><strong>Telefone:</strong> <a href="tel:+551112345678">(11) 1234-5678</a> (com suporte a texto)</p>
+                    <p><strong>Endereço:</strong> Rua da Inclusão, 123 - Centro, Cidade/Estado</p>
+                    <p><strong>Redes Sociais:</strong> Todas nossas redes possuem legendas e descrições alternativas</p>
+                </div>
+            </section>
         </div>
     </main>
     
-    <footer>
-        <div class="footer-links">
-            <a href="acessibilidade.html">Declaração de Acessibilidade</a>
-            <a href="privacidade.html">Política de Privacidade</a>
-            <a href="termos.html">Termos de Uso</a>
-            <a href="trabalhe-conosco.html">Trabalhe Conosco</a>
-        </div>
+    <footer role="contentinfo">
+        <ul class="footer-links" role="list">
+            <li role="listitem"><a href="acessibilidade.html" aria-label="Declaração de acessibilidade do site">Declaração de Acessibilidade</a></li>
+            <li role="listitem"><a href="privacidade.html" aria-label="Política de privacidade">Política de Privacidade</a></li>
+            <li role="listitem"><a href="termos.html" aria-label="Termos de uso do site">Termos de Uso</a></li>
+            <li role="listitem"><a href="trabalhe-conosco.html" aria-label="Oportunidades de trabalho">Trabalhe Conosco</a></li>
+        </ul>
         <div class="copyright">
             &copy; 2023 Jornal De Todos. Todos os direitos reservados.
         </div>
@@ -367,34 +523,119 @@
     
     <script>
         // Accessibility Features
-        document.getElementById('increaseFont').addEventListener('click', function() {
-            changeFontSize(1);
-        });
-        
-        document.getElementById('decreaseFont').addEventListener('click', function() {
-            changeFontSize(-1);
-        });
-        
-        document.getElementById('highContrast').addEventListener('click', function() {
-            document.body.classList.toggle('high-contrast');
-        });
-        
-        document.getElementById('resetAccessibility').addEventListener('click', function() {
-            document.body.classList.remove('high-contrast');
-            document.body.style.fontSize = '';
-        });
-        
-        function changeFontSize(direction) {
-            const currentSize = parseFloat(getComputedStyle(document.body).fontSize);
-            document.body.style.fontSize = (currentSize + direction * 2) + 'px';
-        }
-        
-        // Skip to content for screen readers
-        document.addEventListener('keydown', function(e) {
-            if (e.key === '1' && e.altKey) {
-                document.querySelector('main').setAttribute('tabindex', '-1');
-                document.querySelector('main').focus();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Font Size Adjustment
+            const increaseFont = document.getElementById('increaseFont');
+            
+            increaseFont.addEventListener('click', function() {
+                document.body.classList.toggle('large-text');
+                
+                // Save preference
+                const isLargeText = document.body.classList.contains('large-text');
+                localStorage.setItem('largeText', isLargeText);
+            });
+            
+            // Check for saved font size preference
+            if (localStorage.getItem('largeText') === 'true') {
+                document.body.classList.add('large-text');
             }
+            
+            // High Contrast Black/White Toggle
+            const highContrastBWBtn = document.getElementById('highContrastBW');
+            
+            highContrastBWBtn.addEventListener('click', function() {
+                // Turn off yellow contrast if active
+                document.body.classList.remove('high-contrast-yellow');
+                document.getElementById('highContrastYellow').setAttribute('aria-pressed', 'false');
+                
+                // Toggle black/white contrast
+                const isPressed = this.getAttribute('aria-pressed') === 'true';
+                document.body.classList.toggle('high-contrast');
+                this.setAttribute('aria-pressed', String(!isPressed));
+                
+                // Update icon
+                const icon = this.querySelector('span[aria-hidden="true"]');
+                icon.textContent = isPressed ? '◑' : '◒';
+                
+                // Save preferences
+                localStorage.setItem('highContrast', !isPressed);
+                localStorage.setItem('highContrastYellow', 'false');
+            });
+            
+            // High Contrast Yellow/Black Toggle
+            const highContrastYellowBtn = document.getElementById('highContrastYellow');
+            
+            highContrastYellowBtn.addEventListener('click', function() {
+                // Turn off black/white contrast if active
+                document.body.classList.remove('high-contrast');
+                document.getElementById('highContrastBW').setAttribute('aria-pressed', 'false');
+                
+                // Toggle yellow/black contrast
+                const isPressed = this.getAttribute('aria-pressed') === 'true';
+                document.body.classList.toggle('high-contrast-yellow');
+                this.setAttribute('aria-pressed', String(!isPressed));
+                
+                // Update icon
+                const icon = this.querySelector('span[aria-hidden="true"]');
+                icon.textContent = isPressed ? '◔' : '◕';
+                
+                // Save preferences
+                localStorage.setItem('highContrastYellow', !isPressed);
+                localStorage.setItem('highContrast', 'false');
+            });
+            
+            // Check for saved contrast preferences on load
+            if (localStorage.getItem('highContrast') === 'true') {
+                document.body.classList.add('high-contrast');
+                highContrastBWBtn.setAttribute('aria-pressed', 'true');
+                highContrastBWBtn.querySelector('span[aria-hidden="true"]').textContent = '◒';
+            }
+            
+            if (localStorage.getItem('highContrastYellow') === 'true') {
+                document.body.classList.add('high-contrast-yellow');
+                highContrastYellowBtn.setAttribute('aria-pressed', 'true');
+                highContrastYellowBtn.querySelector('span[aria-hidden="true"]').textContent = '◕';
+            }
+            
+            // Focus management for skip link
+            document.querySelector('.skip-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                const mainContent = document.getElementById('main-content');
+                mainContent.setAttribute('tabindex', '-1');
+                mainContent.focus();
+            });
+            
+            // Keyboard navigation for menu
+            const menuItems = document.querySelectorAll('[role="menuitem"]');
+            menuItems.forEach((item, index) => {
+                item.addEventListener('keydown', function(e) {
+                    // Right arrow
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        const nextItem = menuItems[index + 1] || menuItems[0];
+                        nextItem.focus();
+                    }
+                    
+                    // Left arrow
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        const prevItem = menuItems[index - 1] || menuItems[menuItems.length - 1];
+                        prevItem.focus();
+                    }
+                    
+                    // Home key
+                    if (e.key === 'Home') {
+                        e.preventDefault();
+                        menuItems[0].focus();
+                    }
+                    
+                    // End key
+                    if (e.key === 'End') {
+                        e.preventDefault();
+                        menuItems[menuItems.length - 1].focus();
+                    }
+                });
+            });
         });
     </script>
 </body>
