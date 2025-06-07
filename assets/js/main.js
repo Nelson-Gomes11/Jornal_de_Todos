@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Renderiza apenas 4 notícias na home
   if (newsContainer) {
-    renderNews(newsContainer, newsData, 4);
+    renderNews(newsContainer, newsData, 3);
   }
   
   // Configura o link "Ver todas"
